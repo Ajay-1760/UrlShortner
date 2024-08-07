@@ -1,0 +1,5 @@
+package com.urlshortner.demo.entities;
+
+public class URL {
+
+}

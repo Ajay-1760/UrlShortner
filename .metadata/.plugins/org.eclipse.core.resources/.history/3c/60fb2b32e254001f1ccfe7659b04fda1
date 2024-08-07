@@ -1,0 +1,5 @@
+package com.urlshortner.demo.dao;
+
+public class UrlDao extends JpaRepository{
+
+}

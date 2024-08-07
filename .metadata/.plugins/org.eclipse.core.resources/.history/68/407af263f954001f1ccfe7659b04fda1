@@ -1,0 +1,37 @@
+package com.urlshortner.demo.controller;
+
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.urlshortner.demo.service.UrlService;
+
+@RestController
+@RequestMapping("*")
+public class UrlController {
+	
+	@Autowired
+	private UrlService urlService;
+	
+	@PostMapping("/shorten")
+	public ResponseEntity<?> getShortUrl(@RequestBody Map<String, String> request){
+		String originalUrl=request.get("url");
+		URL url=urlService.generateShortUrl(originalUrl);
+		return ResponseEntity.ok(url);
+	}
+	
+	@GetMapping("/{shortenedUrl}")
+	public ResponseEntity<?> redirectToOrginalUrl(@PathVariable String shortenedUrl){
+		
+		Optional<URL> url=urlService.generateOriginalUrl(shortenedUrl)
+		return null;
+	}
+}
