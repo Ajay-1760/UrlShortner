@@ -1,23 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import URLshortner from './component/URLshortner';
+import OriginalUrl from './component/OriginalUrl';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-4">
+      <h1 className="text-center mb-4">
+        Welcome to our URL Shortener
+       </h1>
+      <URLshortner/>
+      <OriginalUrl/>
     </div>
   );
 }

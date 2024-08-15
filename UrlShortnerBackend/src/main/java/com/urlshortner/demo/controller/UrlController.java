@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.urlshortner.demo.service.UrlService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("*")
 public class UrlController {
@@ -31,6 +33,15 @@ public class UrlController {
 	public ResponseEntity<?> getShortUrl(@RequestBody Map<String, String> request){
 		String originalUrl=request.get("url");
 		URL url=urlService.generateShortUrl(originalUrl);
+		return ResponseEntity.ok(url);
+	}
+	
+	@PostMapping("/original")
+	public ResponseEntity<?> getOriginalUrl(@RequestBody Map<String, String> request){
+		String shortenedUrl=request.get("url");
+        String baseUrl = "http://localhost:8082/";
+        shortenedUrl=shortenedUrl.substring(baseUrl.length());
+		Optional<URL>  url=urlService.generateOriginalUrl(shortenedUrl);
 		return ResponseEntity.ok(url);
 	}
 	

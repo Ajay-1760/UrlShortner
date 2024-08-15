@@ -1,9 +1,0 @@
-package com.urlshortner.demo.dao;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.urlshortner.demo.entities.URL;
-
-public interface UrlDao extends JpaRepository<URL, Integer>{
-
-}
