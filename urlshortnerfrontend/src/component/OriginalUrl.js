@@ -14,7 +14,7 @@ function OriginalUrl() {
                 headers: { 'Content-Type': 'application/json' },
             })
             .then(response => {
-                setOriginalUrl("http://localhost:8082/" + response.data.originalUrl);
+                setOriginalUrl(response.data.originalUrl);
                 console.log(response);
             })
             .catch(error => {

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.urlshortner.demo.dao.UrlDao;
@@ -16,8 +15,7 @@ public class UrlService {
 	@Autowired
 	private UrlDao urlDao;
 	private static long idCounter = 1;
-	@Value("${baseUrl}")
-	private String baseUrl;
+	String baseUrl = "${baseUrl}";
 	
 	public URL generateShortUrl(String originalUrl) {
 		

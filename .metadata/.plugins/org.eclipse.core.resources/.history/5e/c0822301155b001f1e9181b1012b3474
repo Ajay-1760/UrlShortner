@@ -7,4 +7,4 @@ server.port=8082
 spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto = create
 
-baseUrl=http://localhost:8082/shortUrl/
+baseUrl="http://localhost:8082/"

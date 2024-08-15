@@ -45,7 +45,7 @@ public class UrlController {
 		return ResponseEntity.ok(url);
 	}
 	
-	@GetMapping("/**")
+	@GetMapping("/shortUrl/**")
 	public void UrlRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String shortenedUrl=request.getRequestURL().toString();
@@ -53,6 +53,8 @@ public class UrlController {
 		Optional<URL> url=urlService.generateOriginalUrl(shortenedUrl);
         if (url.isPresent()) {
             response.sendRedirect(url.get().getOriginalUrl());
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Short URL not found");
         }
 	}
 }

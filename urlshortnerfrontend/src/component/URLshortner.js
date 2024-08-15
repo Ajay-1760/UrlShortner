@@ -14,7 +14,7 @@ function URLshortner() {
                 headers: { 'Content-Type': 'application/json' },
             })
             .then(response => {
-                setShortUrl("http://localhost:8082/" + response.data.shortenedUrl);
+                setShortUrl(response.data.shortenedUrl);
                 console.log(response);
             })
             .catch(error => {

@@ -45,14 +45,17 @@ public class UrlController {
 		return ResponseEntity.ok(url);
 	}
 	
-	@GetMapping("/**")
-	public void UrlRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@GetMapping("/shortUrl/*")
+	public ResponseEntity<Void> UrlRedirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String shortenedUrl=request.getRequestURL().toString();
 		
 		Optional<URL> url=urlService.generateOriginalUrl(shortenedUrl);
         if (url.isPresent()) {
             response.sendRedirect(url.get().getOriginalUrl());
+            return ResponseEntity.status(HttpStatus.FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 	}
 }
